@@ -37,7 +37,8 @@ class HomeViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<DiffableDataSection, PiscumDataSource>?
     private weak var coordinatorDelegate: HomeCoordinator?
     
-    private var isUpdate: Bool = false
+    private var canUpdate: Bool = false
+    private var footerCell: LoadingFooter?
     
     var disposeBag: DisposeBag = .init()
     
@@ -76,8 +77,10 @@ extension HomeViewController: View {
             .drive(with: self) { (owner, lists) in
                 guard !(lists.isEmpty) else { return }
                 
-                if lists.count > 1 {
-                    owner.isUpdate = false
+                let filtered = lists.filter { $0.imageData != nil }
+                
+                if filtered.count == lists.count {
+                    owner.canUpdate = true
                 }
                 
                 owner.makeSnapShotAndApply(data: lists)
@@ -133,7 +136,7 @@ private extension HomeViewController {
         self.dataSource?.supplementaryViewProvider = .some({ collectionView, elementKind, indexPath in
             guard let cell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: LoadingFooter.reuseIdentifier, for: indexPath) as? LoadingFooter else { return .init() }
             
-            cell.isHidden = !self.isUpdate
+            self.footerCell = cell
             
             return cell
         })
@@ -150,15 +153,20 @@ private extension HomeViewController {
 
 extension HomeViewController: UICollectionViewDelegate, UIScrollViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
-        guard let footer = view as? LoadingFooter else { return }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scrollViewHeight = scrollView.frame.size.height
+        let scrollOffset = scrollView.contentOffset.y
         
-        footer.activityIndicator.startAnimating()
+        guard (scrollViewHeight - scrollOffset) < 0, self.canUpdate else { return }
+        
+        self.canUpdate = false
+        
+        self.footerCell?.activityIndicator.startAnimating()
+        self.reactor?.action.onNext(.fetchPageList)
     }
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
         guard let footer = view as? LoadingFooter else { return }
-        print("WillDisappear")
         
         footer.activityIndicator.stopAnimating()
     }
