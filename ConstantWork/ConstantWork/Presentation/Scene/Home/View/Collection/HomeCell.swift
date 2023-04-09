@@ -14,6 +14,7 @@ final class HomeCell: UICollectionViewCell {
     static let reuseIdentifier: String = "HomeCell"
     
     private let cellImageView: UIImageView = .init().then {
+        $0.image = .init(named: "defaultImage")
         $0.contentMode = .scaleToFill
     }
     
@@ -34,8 +35,8 @@ final class HomeCell: UICollectionViewCell {
         cellImageView.image = nil
     }
     
-    func configure(with imageData: Data) {
-        self.cellImageView.image = .init(data: imageData)
+    func configure(with data: Data) {
+        self.cellImageView.image = .init(data: data)
     }
 }
 

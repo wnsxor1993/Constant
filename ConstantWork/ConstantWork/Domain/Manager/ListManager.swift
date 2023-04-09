@@ -35,71 +35,64 @@ final class ListManager {
                     return Disposables.create()
                 }
             }
-            .flatMap { lists -> Single<[Data]> in
-                guard !(lists.isEmpty) else { return .just([]) }
-                
-                return self.encodeImageWithCache(from: lists)
-            }
             .flatMap {
-                guard !($0.isEmpty) else { return .just([]) }
-                
-                return self.convertDTOToDataSource(with: $0)
+                return self.convertToPiscumDataSource(from: $0)
             }
+    }
+    
+    func fetchPageImageData(from dataSource: PiscumDataSource) -> Single<PiscumDataSource> {
+        
+        return self.fetchImage(with: dataSource)
     }
 }
 
 private extension ListManager {
     
-    func encodeImageWithCache(from lists: PageLists) -> Single<[Data]> {
-        
+    func convertToPiscumDataSource(from lists: PageLists) -> Single<[PiscumDataSource]> {
         return .create { observer in
-            var dataArray: [Data?] = []
-            
-            lists.forEach {
-                guard let url: URL = URL(string: $0.downloadURL) else {
-                    dataArray.append(nil)
-                    return
-                }
+            let dataSourceLists: [PiscumDataSource] = lists.compactMap {
+                guard let url: URL = .init(string: $0.downloadURL) else { return nil }
                 
-                if let image: UIImage = ImageCacheService.loadImageFromCache(with: url.pathComponents[2]) {
-                    let data: Data? = image.jpegData(compressionQuality: 1)
-                    dataArray.append(data)
-                    
-                } else {
-                    let width: CGFloat = CGFloat($0.width)
-                    let height: CGFloat = CGFloat($0.height)
-                    
-                    let image: UIImage? = ImageCacheService.samplingImage(at: url, to: .init(width: width, height: height), with: 0.1)
-                    ImageCacheService.saveImageToCache(with: url.pathComponents[2], image: image)
-                    
-                    let data: Data? = image?.jpegData(compressionQuality: 1)
-                    dataArray.append(data)
-                }
+                return .init(id: $0.id, width: $0.width, height: $0.height, imageURL: url)
             }
             
-            let compactedDatas: [Data] = dataArray.compactMap { $0 }
-            observer(.success(compactedDatas))
+            guard self.currentLists.count == dataSourceLists.count else {
+                observer(.failure(RxError.noElements))
+                
+                return Disposables.create()
+            }
+            
+            observer(.success(dataSourceLists))
             
             return Disposables.create()
         }
     }
     
-    func convertDTOToDataSource(with datas: [Data]) -> Single<[PiscumDataSource]> {
+    func fetchImage(with dataSource: PiscumDataSource) -> Single<PiscumDataSource> {
         
         return .create { observer in
-            guard datas.count == self.currentLists.count else {
-                observer(.failure(RxError.argumentOutOfRange))
+            var newDataSource: PiscumDataSource = dataSource
+            
+            if let image: UIImage = ImageCacheService.loadImageFromCache(with: "PiscumID_\(dataSource.id)") {
+                
+                newDataSource.imageData = image.jpegData(compressionQuality: 1)
+                observer(.success(newDataSource))
                 
                 return Disposables.create()
             }
             
-            var dataSource: [PiscumDataSource] = []
-            for (index, value) in self.currentLists.enumerated() {
-                let data: PiscumDataSource = .init(id: value.id, imageData: datas[index])
-                dataSource.append(data)
+            let width: CGFloat = .init(newDataSource.width)
+            let height: CGFloat = .init(newDataSource.height)
+            
+            guard let image: UIImage = ImageCacheService.samplingImage(at: newDataSource.imageURL, to: .init(width: width, height: height), with: 0.1) else {
+                observer(.failure(RxError.noElements))
+                
+                return Disposables.create()
             }
             
-            observer(.success(dataSource))
+            ImageCacheService.saveImageToCache(with: "PiscumID_\(newDataSource.id)", image: image)
+            newDataSource.imageData = image.jpegData(compressionQuality: 1)
+            observer(.success(newDataSource))
             
             return Disposables.create()
         }

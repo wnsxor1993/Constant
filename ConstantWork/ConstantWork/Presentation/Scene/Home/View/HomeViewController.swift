@@ -106,10 +106,18 @@ private extension HomeViewController {
 private extension HomeViewController {
     
     func configureDataSource() {
-        self.dataSource = .init(collectionView: self.listCollectionView) { (collectionView, index, piscumDataSource) -> UICollectionViewCell? in
+        self.dataSource = .init(collectionView: self.listCollectionView) { [weak self] (collectionView, index, piscumDataSource) -> UICollectionViewCell? in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell.reuseIdentifier, for: index) as? HomeCell else { return .init() }
             
-            cell.configure(with: piscumDataSource.imageData)
+            if let data: Data = piscumDataSource.imageData {
+                cell.configure(with: data)
+                
+                return cell
+            }
+            
+            DispatchQueue.global().async {
+                self?.reactor?.action.onNext(.fetchPageImage(piscumDataSource))
+            }
             
             return cell
         }
