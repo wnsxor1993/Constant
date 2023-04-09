@@ -35,14 +35,14 @@ class HomeViewController: UIViewController {
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<DiffableDataSection, PiscumDataSource>?
-    private weak var coordinatorDelegate: HomeCoordinator?
+    private weak var coordinatorDelegate: HomeCoordinateDelegate?
     
     private var canUpdate: Bool = false
     private var footerCell: LoadingFooter?
     
     var disposeBag: DisposeBag = .init()
     
-    init(with coordinatorDelegate: HomeCoordinator) {
+    init(with coordinatorDelegate: HomeCoordinateDelegate) {
         self.coordinatorDelegate = coordinatorDelegate
         
         super.init(nibName: nil, bundle: nil)
@@ -97,13 +97,10 @@ extension HomeViewController: View {
                 self.footerCell?.activityIndicator.stopAnimating()
                 self.footerCell?.isHidden = true
                 
-                let alertVC: UIAlertController = .init(title: "Notice", message: message, preferredStyle: .alert)
-                let confirmAction: UIAlertAction = .init(title: "확인", style: .cancel) { _ in
+                self.coordinatorDelegate?.presentAlertVC(with: message, completion: {
                     self.footerCell?.isHidden = false
                     self.reactor?.action.onNext(.resetAlertMessage)
-                }
-                alertVC.addAction(confirmAction)
-                self.present(alertVC, animated: true)
+                })
             }
             .disposed(by: disposeBag)
     }

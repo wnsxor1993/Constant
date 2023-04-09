@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol HomeCoordinateDelegate: AnyObject {
+    
+    func presentAlertVC(with message: String, completion: @escaping () -> ())
+}
+
 final class HomeCoordinator: Coordinator {
     
     weak var parentCoordinator: Coordinator?
@@ -30,5 +35,21 @@ final class HomeCoordinator: Coordinator {
         self.childViewControllers.append(homeVC)
         
         self.navigationController.setViewControllers([homeVC], animated: false)
+    }
+}
+
+extension HomeCoordinator: HomeCoordinateDelegate {
+    
+    func presentAlertVC(with message: String, completion: @escaping () -> ()) {
+        let alertVC: UIAlertController = .init(title: "Notice", message: message, preferredStyle: .alert)
+        let confirmAction: UIAlertAction = .init(title: "확인", style: .cancel) { _ in
+            self.childViewControllers.removeLast()
+            completion()
+        }
+        
+        alertVC.addAction(confirmAction)
+        
+        self.childViewControllers.last?.present(alertVC, animated: true)
+        self.childViewControllers.append(alertVC)
     }
 }
