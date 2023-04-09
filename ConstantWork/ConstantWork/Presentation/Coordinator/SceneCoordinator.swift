@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol SceneCoordinateDelegate: AnyObject {
+    
+    func moveToHome(from coor: Coordinator)
+}
+
 final class SceneCoordinator: Coordinator {
     
     weak var parentCoordinator: Coordinator? = nil
@@ -18,9 +23,31 @@ final class SceneCoordinator: Coordinator {
     }
     
     func start() {
-        let homeCoor: HomeCoordinator = .init(navigationController, with: self)
-        self.childCoordinators.append(homeCoor)
+        let launchCoor: LaunchCoordinator = .init(navigationController, with: self)
+        self.childCoordinators.append(launchCoor)
 
+        launchCoor.start()
+    }
+}
+
+extension SceneCoordinator: SceneCoordinateDelegate {
+    
+    func moveToHome(from coor: Coordinator) {
+        let homeCoor: HomeCoordinator = .init(navigationController, with: self)
         homeCoor.start()
+        
+        self.childCoordinators.append(homeCoor)
+        self.remove(which: coor)
+    }
+}
+
+private extension SceneCoordinator {
+    
+    func remove(which coordinator: Coordinator) {
+        guard let index = childCoordinators.firstIndex(where: { coor in
+            return coor === coordinator
+        }) else { return }
+        
+        self.childCoordinators.remove(at: index)
     }
 }

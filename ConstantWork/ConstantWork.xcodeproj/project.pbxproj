@@ -34,6 +34,8 @@
 		D2A3D48529E2A2DC0093E475 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D48429E2A2DC0093E475 /* ImageCacheService.swift */; };
 		D2A3D48A29E2A8770093E475 /* PiscumDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D48929E2A8770093E475 /* PiscumDataSource.swift */; };
 		D2A3D48C29E2E6890093E475 /* LoadingFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D48B29E2E6890093E475 /* LoadingFooter.swift */; };
+		D2A3D48F29E315DE0093E475 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D48E29E315DE0093E475 /* LaunchViewController.swift */; };
+		D2A3D49129E317770093E475 /* LaunchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D49029E317770093E475 /* LaunchCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,8 @@
 		D2A3D48429E2A2DC0093E475 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
 		D2A3D48929E2A8770093E475 /* PiscumDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiscumDataSource.swift; sourceTree = "<group>"; };
 		D2A3D48B29E2E6890093E475 /* LoadingFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingFooter.swift; sourceTree = "<group>"; };
+		D2A3D48E29E315DE0093E475 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		D2A3D49029E317770093E475 /* LaunchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCoordinator.swift; sourceTree = "<group>"; };
 		FCCEFA39C3A34B43C99D2EEE /* Pods-ConstantWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConstantWork.debug.xcconfig"; path = "Target Support Files/Pods-ConstantWork/Pods-ConstantWork.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				D2A3D45529E27F970093E475 /* SceneCoordinator.swift */,
+				D2A3D49029E317770093E475 /* LaunchCoordinator.swift */,
 				D2A3D46F29E2930C0093E475 /* HomeCoordinator.swift */,
 				D2A3D45229E27F790093E475 /* protocol */,
 			);
@@ -170,6 +175,7 @@
 		D2A3D45729E280280093E475 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				D2A3D48D29E315C60093E475 /* Launch */,
 				D2A3D45A29E284E10093E475 /* Home */,
 			);
 			path = Scene;
@@ -300,6 +306,14 @@
 				D2A3D48929E2A8770093E475 /* PiscumDataSource.swift */,
 			);
 			path = DiffableDataSource;
+			sourceTree = "<group>";
+		};
+		D2A3D48D29E315C60093E475 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				D2A3D48E29E315DE0093E475 /* LaunchViewController.swift */,
+			);
+			path = Launch;
 			sourceTree = "<group>";
 		};
 		D33864C239C919AF2D1B3112 /* Pods */ = {
@@ -438,9 +452,11 @@
 				D2A3D47629E297C00093E475 /* HTTPMethod.swift in Sources */,
 				D2A3D48529E2A2DC0093E475 /* ImageCacheService.swift in Sources */,
 				D2A3D48329E29D140093E475 /* ListManager.swift in Sources */,
+				D2A3D49129E317770093E475 /* LaunchCoordinator.swift in Sources */,
 				D2A3D47E29E29B270093E475 /* HomeReactor.swift in Sources */,
 				D2A3D48029E29CC40093E475 /* JSONConvertService.swift in Sources */,
 				D2A3D46C29E28FA70093E475 /* PiscumDTO.swift in Sources */,
+				D2A3D48F29E315DE0093E475 /* LaunchViewController.swift in Sources */,
 				D2A3D47829E297EB0093E475 /* EndPoint.swift in Sources */,
 				D2A3D47029E2930C0093E475 /* HomeCoordinator.swift in Sources */,
 				D2A3D43B29E27B340093E475 /* AppDelegate.swift in Sources */,
