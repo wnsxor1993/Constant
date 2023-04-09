@@ -26,14 +26,15 @@ struct CollectionLayout {
 private extension CollectionLayout {
     
     func createHomeLayout() -> NSCollectionLayoutSection? {
-        let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(0.33), heightDimension: .fractionalWidth(0.33))
+        let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(0.33), heightDimension: .fractionalWidth(0.32))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.33))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.interItemSpacing = .fixed(1)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.interGroupSpacing = 10
+        section.interGroupSpacing = 1
         
         return section
     }

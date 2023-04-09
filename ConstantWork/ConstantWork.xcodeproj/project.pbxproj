@@ -22,6 +22,7 @@
 		D2A3D46929E28F210093E475 /* SnapShotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D46829E28F210093E475 /* SnapShotService.swift */; };
 		D2A3D46C29E28FA70093E475 /* PiscumDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D46B29E28FA70093E475 /* PiscumDTO.swift */; };
 		D2A3D46E29E2904C0093E475 /* DiffableDataSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D46D29E2904C0093E475 /* DiffableDataSection.swift */; };
+		D2A3D47029E2930C0093E475 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D46F29E2930C0093E475 /* HomeCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		D2A3D46829E28F210093E475 /* SnapShotService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapShotService.swift; sourceTree = "<group>"; };
 		D2A3D46B29E28FA70093E475 /* PiscumDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiscumDTO.swift; sourceTree = "<group>"; };
 		D2A3D46D29E2904C0093E475 /* DiffableDataSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableDataSection.swift; sourceTree = "<group>"; };
+		D2A3D46F29E2930C0093E475 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		FCCEFA39C3A34B43C99D2EEE /* Pods-ConstantWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConstantWork.debug.xcconfig"; path = "Target Support Files/Pods-ConstantWork/Pods-ConstantWork.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				D2A3D45529E27F970093E475 /* SceneCoordinator.swift */,
+				D2A3D46F29E2930C0093E475 /* HomeCoordinator.swift */,
 				D2A3D45229E27F790093E475 /* protocol */,
 			);
 			path = Coordinator;
@@ -357,6 +360,7 @@
 				D2A3D46129E288070093E475 /* UIView +.swift in Sources */,
 				D2A3D43F29E27B340093E475 /* HomeViewController.swift in Sources */,
 				D2A3D46C29E28FA70093E475 /* PiscumDTO.swift in Sources */,
+				D2A3D47029E2930C0093E475 /* HomeCoordinator.swift in Sources */,
 				D2A3D43B29E27B340093E475 /* AppDelegate.swift in Sources */,
 				D2A3D46929E28F210093E475 /* SnapShotService.swift in Sources */,
 				D2A3D46629E28D6E0093E475 /* HomeCell.swift in Sources */,
@@ -502,7 +506,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q646ABLXY6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ConstantWork/Info.plist;
+				INFOPLIST_FILE = ConstantWork/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -531,7 +535,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q646ABLXY6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ConstantWork/Info.plist;
+				INFOPLIST_FILE = ConstantWork/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

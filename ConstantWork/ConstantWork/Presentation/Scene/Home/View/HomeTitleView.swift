@@ -36,18 +36,20 @@ final class HomeTitleView: UIView {
 private extension HomeTitleView {
     
     func configureLayouts() {
+        self.addSubviews(with: logoImageView, incImageView)
+        
         self.logoImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview().inset(-10)
-            $0.width.equalTo(65)
-            $0.height.equalTo(50)
+            $0.top.equalToSuperview()
+            $0.width.equalTo(52)
+            $0.height.equalTo(40)
         }
         
         self.incImageView.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview().inset(5)
-            $0.width.equalTo(65)
-            $0.height.equalTo(12)
+            $0.bottom.equalToSuperview()
+            $0.width.equalTo(52)
+            $0.height.equalTo(10)
         }
     }
 }

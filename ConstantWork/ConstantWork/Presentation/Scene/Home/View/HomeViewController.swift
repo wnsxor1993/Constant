@@ -26,11 +26,24 @@ class HomeViewController: UIViewController {
         guard let compositionalLayout: UICollectionViewCompositionalLayout = CollectionLayout().makeCompositionalLayout(which: .home) else { return }
 
         $0.collectionViewLayout = compositionalLayout
+        $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = .clear
         $0.register(HomeCell.self, forCellWithReuseIdentifier: HomeCell.reuseIdentifier)
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<DiffableDataSection, PiscumDTO>?
+    private weak var coordinatorDelegate: HomeCoordinator?
+    
+    init(with coordinatorDelegate: HomeCoordinator) {
+        self.coordinatorDelegate = coordinatorDelegate
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("This initializer does not use")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,9 +61,9 @@ private extension HomeViewController {
         self.view.addSubviews(with: titleView, listTitleLabel, listCollectionView)
         
         titleView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaInsets.top)
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(70)
+            $0.height.equalTo(55)
         }
         
         listTitleLabel.snp.makeConstraints {
@@ -60,7 +73,7 @@ private extension HomeViewController {
         
         listCollectionView.snp.makeConstraints {
             $0.top.equalTo(listTitleLabel.snp.bottom).offset(10)
-            $0.leading.trailing.equalToSuperview().inset(25)
+            $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview()
         }
     }
@@ -91,7 +104,7 @@ private extension HomeViewController {
     }
     
     func dummyData() {
-        let dtoArray: [PiscumDTO] = .init(repeating: .init(id: "ABC", author: "None", width: 300, height: 300, url: "none", downloadURL: "none"), count: 20)
+        let dtoArray: [PiscumDTO] = [.init(id: "ABC", author: "None", width: 300, height: 300, url: "none", downloadURL: "none"), .init(id: "ABCd", author: "None", width: 300, height: 300, url: "none", downloadURL: "none"), .init(id: "ABCe", author: "None", width: 300, height: 300, url: "none", downloadURL: "none"), .init(id: "ABCf", author: "None", width: 300, height: 300, url: "none", downloadURL: "none"), .init(id: "ABCg", author: "None", width: 300, height: 300, url: "none", downloadURL: "none")]
         
         self.makeSnapShotAndApply(data: dtoArray)
     }

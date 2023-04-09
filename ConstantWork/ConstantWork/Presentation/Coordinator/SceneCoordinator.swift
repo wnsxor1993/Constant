@@ -18,9 +18,9 @@ final class SceneCoordinator: Coordinator {
     }
     
     func start() {
-//        let launchCoor: LaunchCoordinator = .init(navigationController, parent: self, with: googleLoginManager)
-//        self.childCoordinators.append(launchCoor)
-//
-//        launchCoor.start()
+        let homeCoor: HomeCoordinator = .init(navigationController, with: self)
+        self.childCoordinators.append(homeCoor)
+
+        homeCoor.start()
     }
 }
