@@ -86,6 +86,26 @@ extension HomeViewController: View {
                 owner.makeSnapShotAndApply(data: lists)
             }
             .disposed(by: disposeBag)
+        
+        reactor.state.map(\.alertMessage)
+            .compactMap { $0 }
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: "")
+            .drive(with: self) { (owner, message) in
+                guard message != "" else { return }
+                
+                self.footerCell?.activityIndicator.stopAnimating()
+                self.footerCell?.isHidden = true
+                
+                let alertVC: UIAlertController = .init(title: "Notice", message: message, preferredStyle: .alert)
+                let confirmAction: UIAlertAction = .init(title: "확인", style: .cancel) { _ in
+                    self.footerCell?.isHidden = false
+                    self.reactor?.action.onNext(.resetAlertMessage)
+                }
+                alertVC.addAction(confirmAction)
+                self.present(alertVC, animated: true)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -126,9 +146,7 @@ private extension HomeViewController {
                 return cell
             }
             
-            DispatchQueue.global(qos: .background).async {
-                self?.reactor?.action.onNext(.fetchPageImage(piscumDataSource))
-            }
+            self?.reactor?.action.onNext(.fetchPageImage(piscumDataSource))
             
             return cell
         }
