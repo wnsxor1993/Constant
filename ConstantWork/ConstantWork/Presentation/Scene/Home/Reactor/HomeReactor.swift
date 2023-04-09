@@ -12,11 +12,13 @@ final class HomeReactor: Reactor {
     
     enum Action {
         case fetchPageList
+        case fetchPageImage(PiscumDataSource)
         case resetAlertMessage
     }
     
     enum Mutation {
         case refreshPages([PiscumDataSource])
+        case refreshImage(PiscumDataSource)
         case alertEndPage(String?)
     }
     
@@ -47,6 +49,13 @@ final class HomeReactor: Reactor {
                 }
                 .asObservable()
             
+        case .fetchPageImage(let dataSource):
+            return self.listManager.fetchPageImageData(from: dataSource)
+                .flatMap {
+                    return .just(.refreshImage($0))
+                }
+                .asObservable()
+            
         case .resetAlertMessage:
             return .just(.alertEndPage(nil))
         }
@@ -58,6 +67,15 @@ final class HomeReactor: Reactor {
         switch mutation {
         case let .refreshPages(pages):
             newState.pageLists.append(contentsOf: pages)
+            
+        case let .refreshImage(page):
+            let index: Int? = newState.pageLists.firstIndex { dataSource in
+                return dataSource.id == page.id
+            }
+            
+            guard let index else { break }
+            
+            newState.pageLists[index] = page
             
         case let .alertEndPage(message):
             newState.alertMessage = message

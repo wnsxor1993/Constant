@@ -10,5 +10,7 @@ import Foundation
 struct PiscumDataSource: Hashable {
     
     let id: String
-    var imageData: Data
+    let width, height: Int
+    let imageURL: URL
+    var imageData: Data?
 }
