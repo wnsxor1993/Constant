@@ -1,6 +1,7 @@
 {
-  "colors" : [
+  "images" : [
     {
+      "filename" : "constantInc.png",
       "idiom" : "universal"
     }
   ],

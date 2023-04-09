@@ -15,6 +15,8 @@
 		D2A3D44729E27B350093E475 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2A3D44529E27B350093E475 /* LaunchScreen.storyboard */; };
 		D2A3D45429E27F810093E475 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D45329E27F810093E475 /* Coordinator.swift */; };
 		D2A3D45629E27F970093E475 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D45529E27F970093E475 /* SceneCoordinator.swift */; };
+		D2A3D45E29E285060093E475 /* HomeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D45D29E285060093E475 /* HomeTitleView.swift */; };
+		D2A3D46129E288070093E475 /* UIView +.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D46029E288070093E475 /* UIView +.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		D2A3D44829E27B350093E475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2A3D45329E27F810093E475 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		D2A3D45529E27F970093E475 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
+		D2A3D45D29E285060093E475 /* HomeTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleView.swift; sourceTree = "<group>"; };
+		D2A3D46029E288070093E475 /* UIView +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView +.swift"; sourceTree = "<group>"; };
 		FCCEFA39C3A34B43C99D2EEE /* Pods-ConstantWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConstantWork.debug.xcconfig"; path = "Target Support Files/Pods-ConstantWork/Pods-ConstantWork.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,7 +79,10 @@
 			children = (
 				D2A3D44E29E27F180093E475 /* Application */,
 				D2A3D44F29E27F380093E475 /* Resources */,
+				D2A3D45F29E287FA0093E475 /* Extension + */,
 				D2A3D45029E27F490093E475 /* Presentation */,
+				D2A3D45829E2808D0093E475 /* Domain */,
+				D2A3D45929E280970093E475 /* Data */,
 			);
 			path = ConstantWork;
 			sourceTree = "<group>";
@@ -128,9 +135,56 @@
 		D2A3D45729E280280093E475 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				D2A3D43E29E27B340093E475 /* HomeViewController.swift */,
+				D2A3D45A29E284E10093E475 /* Home */,
 			);
 			path = Scene;
+			sourceTree = "<group>";
+		};
+		D2A3D45829E2808D0093E475 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		D2A3D45929E280970093E475 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		D2A3D45A29E284E10093E475 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D2A3D45C29E284F70093E475 /* Reactor */,
+				D2A3D45B29E284F00093E475 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		D2A3D45B29E284F00093E475 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D2A3D43E29E27B340093E475 /* HomeViewController.swift */,
+				D2A3D45D29E285060093E475 /* HomeTitleView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D2A3D45C29E284F70093E475 /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Reactor;
+			sourceTree = "<group>";
+		};
+		D2A3D45F29E287FA0093E475 /* Extension + */ = {
+			isa = PBXGroup;
+			children = (
+				D2A3D46029E288070093E475 /* UIView +.swift */,
+			);
+			path = "Extension +";
 			sourceTree = "<group>";
 		};
 		D33864C239C919AF2D1B3112 /* Pods */ = {
@@ -258,6 +312,8 @@
 			files = (
 				D2A3D45429E27F810093E475 /* Coordinator.swift in Sources */,
 				D2A3D45629E27F970093E475 /* SceneCoordinator.swift in Sources */,
+				D2A3D45E29E285060093E475 /* HomeTitleView.swift in Sources */,
+				D2A3D46129E288070093E475 /* UIView +.swift in Sources */,
 				D2A3D43F29E27B340093E475 /* HomeViewController.swift in Sources */,
 				D2A3D43B29E27B340093E475 /* AppDelegate.swift in Sources */,
 				D2A3D43D29E27B340093E475 /* SceneDelegate.swift in Sources */,
