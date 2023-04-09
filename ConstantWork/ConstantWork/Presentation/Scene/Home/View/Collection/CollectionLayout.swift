@@ -36,6 +36,8 @@ private extension CollectionLayout {
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 1
         
+        section.boundarySupplementaryItems = [NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(55)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)]
+        
         return section
     }
 }

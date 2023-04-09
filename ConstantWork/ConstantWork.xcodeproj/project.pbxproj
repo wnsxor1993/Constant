@@ -33,6 +33,7 @@
 		D2A3D48329E29D140093E475 /* ListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D48229E29D140093E475 /* ListManager.swift */; };
 		D2A3D48529E2A2DC0093E475 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D48429E2A2DC0093E475 /* ImageCacheService.swift */; };
 		D2A3D48A29E2A8770093E475 /* PiscumDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D48929E2A8770093E475 /* PiscumDataSource.swift */; };
+		D2A3D48C29E2E6890093E475 /* LoadingFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D48B29E2E6890093E475 /* LoadingFooter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		D2A3D48229E29D140093E475 /* ListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListManager.swift; sourceTree = "<group>"; };
 		D2A3D48429E2A2DC0093E475 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
 		D2A3D48929E2A8770093E475 /* PiscumDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiscumDataSource.swift; sourceTree = "<group>"; };
+		D2A3D48B29E2E6890093E475 /* LoadingFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingFooter.swift; sourceTree = "<group>"; };
 		FCCEFA39C3A34B43C99D2EEE /* Pods-ConstantWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConstantWork.debug.xcconfig"; path = "Target Support Files/Pods-ConstantWork/Pods-ConstantWork.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -232,6 +234,7 @@
 			children = (
 				D2A3D46329E289410093E475 /* CollectionLayout.swift */,
 				D2A3D46529E28D6E0093E475 /* HomeCell.swift */,
+				D2A3D48B29E2E6890093E475 /* LoadingFooter.swift */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				D2A3D47829E297EB0093E475 /* EndPoint.swift in Sources */,
 				D2A3D47029E2930C0093E475 /* HomeCoordinator.swift in Sources */,
 				D2A3D43B29E27B340093E475 /* AppDelegate.swift in Sources */,
+				D2A3D48C29E2E6890093E475 /* LoadingFooter.swift in Sources */,
 				D2A3D46929E28F210093E475 /* SnapShotService.swift in Sources */,
 				D2A3D47C29E2995F0093E475 /* NetworkError.swift in Sources */,
 				D2A3D46629E28D6E0093E475 /* HomeCell.swift in Sources */,

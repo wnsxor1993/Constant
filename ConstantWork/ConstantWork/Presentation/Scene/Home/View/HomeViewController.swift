@@ -30,6 +30,7 @@ class HomeViewController: UIViewController {
         $0.showsVerticalScrollIndicator = false
         $0.backgroundColor = .clear
         $0.register(HomeCell.self, forCellWithReuseIdentifier: HomeCell.reuseIdentifier)
+        $0.register(LoadingFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: LoadingFooter.reuseIdentifier)
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<DiffableDataSection, PiscumDataSource>?
@@ -122,7 +123,11 @@ private extension HomeViewController {
             return cell
         }
         
-        self.listCollectionView.dataSource = self.dataSource
+        self.dataSource?.supplementaryViewProvider = .some({ collectionView, elementKind, indexPath in
+            guard let cell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: LoadingFooter.reuseIdentifier, for: indexPath) as? LoadingFooter else { return .init() }
+            
+            return cell
+        })
     }
     
     func makeSnapShotAndApply(data: [PiscumDataSource]) {
