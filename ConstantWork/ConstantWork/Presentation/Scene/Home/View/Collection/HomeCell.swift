@@ -34,9 +34,9 @@ final class HomeCell: UICollectionViewCell {
         cellImageView.image = nil
     }
     
-//    func configure(data: SearchedStation) {
-//
-//    }
+    func configure(with image: UIImage) {
+        self.cellImageView.image = image
+    }
 }
 
 private extension HomeCell {

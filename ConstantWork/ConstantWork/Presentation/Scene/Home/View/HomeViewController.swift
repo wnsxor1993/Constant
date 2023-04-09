@@ -30,14 +30,16 @@ class HomeViewController: UIViewController {
         $0.register(HomeCell.self, forCellWithReuseIdentifier: HomeCell.reuseIdentifier)
     }
     
+    private var dataSource: UICollectionViewDiffableDataSource<DiffableDataSection, PiscumDTO>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = .white
         self.configureLayouts()
+        self.configureDataSource()
+        self.dummyData()
     }
-
-
 }
 
 private extension HomeViewController {
@@ -61,5 +63,36 @@ private extension HomeViewController {
             $0.leading.trailing.equalToSuperview().inset(25)
             $0.bottom.equalToSuperview()
         }
+    }
+}
+
+// MARK: CollectionView
+private extension HomeViewController {
+    
+    func configureDataSource() {
+        self.dataSource = .init(collectionView: self.listCollectionView) { (collectionView, index, piscumDTO) -> UICollectionViewCell? in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell.reuseIdentifier, for: index) as? HomeCell else { return .init() }
+            
+            let image: UIImage = .init(named: "demoImage")!
+            cell.configure(with: image)
+            
+            return cell
+        }
+        
+        self.listCollectionView.dataSource = self.dataSource
+    }
+    
+    func makeSnapShotAndApply(data: [PiscumDTO]) {
+        let snapshot: NSDiffableDataSourceSnapshot<DiffableDataSection, PiscumDTO> = SnapShotService.makeSnapShot(with: data, section: DiffableDataSection.home)
+        
+        DispatchQueue.main.async {
+            self.dataSource?.apply(snapshot, animatingDifferences: false)
+        }
+    }
+    
+    func dummyData() {
+        let dtoArray: [PiscumDTO] = .init(repeating: .init(id: "ABC", author: "None", width: 300, height: 300, url: "none", downloadURL: "none"), count: 20)
+        
+        self.makeSnapShotAndApply(data: dtoArray)
     }
 }
