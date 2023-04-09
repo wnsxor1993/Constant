@@ -26,10 +26,10 @@ struct CollectionLayout {
 private extension CollectionLayout {
     
     func createHomeLayout() -> NSCollectionLayoutSection? {
-        let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(0.33), heightDimension: .fractionalWidth(0.32))
+        let itemSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(0.48), heightDimension: .fractionalWidth(0.3))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.33))
+        let groupSize: NSCollectionLayoutSize = .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(0.34))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.interItemSpacing = .fixed(1)
         

@@ -48,7 +48,7 @@ enum EndPoint: EndPointable {
     var queryItems: [URLQueryItem]? {
         switch self {
         case .fetchList(let page):
-            return [URLQueryItem(name: "page", value: "\(page)")]
+            return [URLQueryItem(name: "page", value: "\(page)"), URLQueryItem(name: "limit", value: "\(20)")]
         }
     }
 

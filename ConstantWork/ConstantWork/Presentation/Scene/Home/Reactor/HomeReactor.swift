@@ -16,12 +16,12 @@ final class HomeReactor: Reactor {
     }
     
     enum Mutation {
-        case refreshPages([PiscumDTO])
+        case refreshPages([PiscumDataSource])
         case alertEndPage(String?)
     }
     
     struct State {
-        var pageLists: [PiscumDTO] = []
+        var pageLists: [PiscumDataSource] = []
         var alertMessage: String?
     }
     

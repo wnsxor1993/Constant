@@ -31,6 +31,8 @@
 		D2A3D47E29E29B270093E475 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D47D29E29B270093E475 /* HomeReactor.swift */; };
 		D2A3D48029E29CC40093E475 /* JSONConvertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D47F29E29CC40093E475 /* JSONConvertService.swift */; };
 		D2A3D48329E29D140093E475 /* ListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D48229E29D140093E475 /* ListManager.swift */; };
+		D2A3D48529E2A2DC0093E475 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D48429E2A2DC0093E475 /* ImageCacheService.swift */; };
+		D2A3D48A29E2A8770093E475 /* PiscumDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D48929E2A8770093E475 /* PiscumDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		D2A3D47D29E29B270093E475 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
 		D2A3D47F29E29CC40093E475 /* JSONConvertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConvertService.swift; sourceTree = "<group>"; };
 		D2A3D48229E29D140093E475 /* ListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListManager.swift; sourceTree = "<group>"; };
+		D2A3D48429E2A2DC0093E475 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
+		D2A3D48929E2A8770093E475 /* PiscumDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PiscumDataSource.swift; sourceTree = "<group>"; };
 		FCCEFA39C3A34B43C99D2EEE /* Pods-ConstantWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConstantWork.debug.xcconfig"; path = "Target Support Files/Pods-ConstantWork/Pods-ConstantWork.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,6 +178,7 @@
 			children = (
 				D2A3D48129E29D080093E475 /* Manager */,
 				D2A3D46729E28F190093E475 /* Service */,
+				D2A3D48729E2A8550093E475 /* Entity */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -226,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				D2A3D46329E289410093E475 /* CollectionLayout.swift */,
-				D2A3D46D29E2904C0093E475 /* DiffableDataSection.swift */,
 				D2A3D46529E28D6E0093E475 /* HomeCell.swift */,
 			);
 			path = Collection;
@@ -238,6 +242,7 @@
 				D2A3D46829E28F210093E475 /* SnapShotService.swift */,
 				D2A3D47929E2990D0093E475 /* NetworkService.swift */,
 				D2A3D47F29E29CC40093E475 /* JSONConvertService.swift */,
+				D2A3D48429E2A2DC0093E475 /* ImageCacheService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -275,6 +280,23 @@
 				D2A3D48229E29D140093E475 /* ListManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		D2A3D48729E2A8550093E475 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				D2A3D48829E2A85C0093E475 /* DiffableDataSource */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		D2A3D48829E2A85C0093E475 /* DiffableDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				D2A3D46D29E2904C0093E475 /* DiffableDataSection.swift */,
+				D2A3D48929E2A8770093E475 /* PiscumDataSource.swift */,
+			);
+			path = DiffableDataSource;
 			sourceTree = "<group>";
 		};
 		D33864C239C919AF2D1B3112 /* Pods */ = {
@@ -405,11 +427,13 @@
 				D2A3D46429E289410093E475 /* CollectionLayout.swift in Sources */,
 				D2A3D45429E27F810093E475 /* Coordinator.swift in Sources */,
 				D2A3D45629E27F970093E475 /* SceneCoordinator.swift in Sources */,
+				D2A3D48A29E2A8770093E475 /* PiscumDataSource.swift in Sources */,
 				D2A3D47A29E2990D0093E475 /* NetworkService.swift in Sources */,
 				D2A3D45E29E285060093E475 /* HomeTitleView.swift in Sources */,
 				D2A3D46129E288070093E475 /* UIView +.swift in Sources */,
 				D2A3D43F29E27B340093E475 /* HomeViewController.swift in Sources */,
 				D2A3D47629E297C00093E475 /* HTTPMethod.swift in Sources */,
+				D2A3D48529E2A2DC0093E475 /* ImageCacheService.swift in Sources */,
 				D2A3D48329E29D140093E475 /* ListManager.swift in Sources */,
 				D2A3D47E29E29B270093E475 /* HomeReactor.swift in Sources */,
 				D2A3D48029E29CC40093E475 /* JSONConvertService.swift in Sources */,

@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
         $0.register(HomeCell.self, forCellWithReuseIdentifier: HomeCell.reuseIdentifier)
     }
     
-    private var dataSource: UICollectionViewDiffableDataSource<DiffableDataSection, PiscumDTO>?
+    private var dataSource: UICollectionViewDiffableDataSource<DiffableDataSection, PiscumDataSource>?
     private weak var coordinatorDelegate: HomeCoordinator?
     
     var disposeBag: DisposeBag = .init()
@@ -106,11 +106,10 @@ private extension HomeViewController {
 private extension HomeViewController {
     
     func configureDataSource() {
-        self.dataSource = .init(collectionView: self.listCollectionView) { (collectionView, index, piscumDTO) -> UICollectionViewCell? in
+        self.dataSource = .init(collectionView: self.listCollectionView) { (collectionView, index, piscumDataSource) -> UICollectionViewCell? in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell.reuseIdentifier, for: index) as? HomeCell else { return .init() }
             
-            let image: UIImage = .init(named: "demoImage")!
-            cell.configure(with: image)
+            cell.configure(with: piscumDataSource.imageData)
             
             return cell
         }
@@ -118,8 +117,8 @@ private extension HomeViewController {
         self.listCollectionView.dataSource = self.dataSource
     }
     
-    func makeSnapShotAndApply(data: [PiscumDTO]) {
-        let snapshot: NSDiffableDataSourceSnapshot<DiffableDataSection, PiscumDTO> = SnapShotService.makeSnapShot(with: data, section: DiffableDataSection.home)
+    func makeSnapShotAndApply(data: [PiscumDataSource]) {
+        let snapshot: NSDiffableDataSourceSnapshot<DiffableDataSection, PiscumDataSource> = SnapShotService.makeSnapShot(with: data, section: DiffableDataSection.home)
         
         DispatchQueue.main.async {
             self.dataSource?.apply(snapshot, animatingDifferences: false)
