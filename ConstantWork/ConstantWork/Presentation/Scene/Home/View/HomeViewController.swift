@@ -23,11 +23,11 @@ class HomeViewController: UIViewController {
     }
     
     private let listCollectionView: UICollectionView = .init(frame: .zero, collectionViewLayout: .init()).then {
-//        guard let compositionalLayout: UICollectionViewCompositionalLayout = MainCollectionLayout().compositionalLayoutSection else { return }
-//
-//        $0.collectionViewLayout = compositionalLayout
+        guard let compositionalLayout: UICollectionViewCompositionalLayout = CollectionLayout().makeCompositionalLayout(which: .home) else { return }
+
+        $0.collectionViewLayout = compositionalLayout
         $0.backgroundColor = .clear
-//        $0.register(StationCell.self, forCellWithReuseIdentifier: StationCell.reuseIdentifier)
+        $0.register(HomeCell.self, forCellWithReuseIdentifier: HomeCell.reuseIdentifier)
     }
     
     override func viewDidLoad() {

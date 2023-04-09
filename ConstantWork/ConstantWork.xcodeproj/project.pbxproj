@@ -17,6 +17,8 @@
 		D2A3D45629E27F970093E475 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D45529E27F970093E475 /* SceneCoordinator.swift */; };
 		D2A3D45E29E285060093E475 /* HomeTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D45D29E285060093E475 /* HomeTitleView.swift */; };
 		D2A3D46129E288070093E475 /* UIView +.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D46029E288070093E475 /* UIView +.swift */; };
+		D2A3D46429E289410093E475 /* CollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D46329E289410093E475 /* CollectionLayout.swift */; };
+		D2A3D46629E28D6E0093E475 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D46529E28D6E0093E475 /* HomeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		D2A3D45529E27F970093E475 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		D2A3D45D29E285060093E475 /* HomeTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleView.swift; sourceTree = "<group>"; };
 		D2A3D46029E288070093E475 /* UIView +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView +.swift"; sourceTree = "<group>"; };
+		D2A3D46329E289410093E475 /* CollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLayout.swift; sourceTree = "<group>"; };
+		D2A3D46529E28D6E0093E475 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		FCCEFA39C3A34B43C99D2EEE /* Pods-ConstantWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConstantWork.debug.xcconfig"; path = "Target Support Files/Pods-ConstantWork/Pods-ConstantWork.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,6 +172,7 @@
 			children = (
 				D2A3D43E29E27B340093E475 /* HomeViewController.swift */,
 				D2A3D45D29E285060093E475 /* HomeTitleView.swift */,
+				D2A3D46229E289030093E475 /* Collection */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -185,6 +190,15 @@
 				D2A3D46029E288070093E475 /* UIView +.swift */,
 			);
 			path = "Extension +";
+			sourceTree = "<group>";
+		};
+		D2A3D46229E289030093E475 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				D2A3D46329E289410093E475 /* CollectionLayout.swift */,
+				D2A3D46529E28D6E0093E475 /* HomeCell.swift */,
+			);
+			path = Collection;
 			sourceTree = "<group>";
 		};
 		D33864C239C919AF2D1B3112 /* Pods */ = {
@@ -310,12 +324,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2A3D46429E289410093E475 /* CollectionLayout.swift in Sources */,
 				D2A3D45429E27F810093E475 /* Coordinator.swift in Sources */,
 				D2A3D45629E27F970093E475 /* SceneCoordinator.swift in Sources */,
 				D2A3D45E29E285060093E475 /* HomeTitleView.swift in Sources */,
 				D2A3D46129E288070093E475 /* UIView +.swift in Sources */,
 				D2A3D43F29E27B340093E475 /* HomeViewController.swift in Sources */,
 				D2A3D43B29E27B340093E475 /* AppDelegate.swift in Sources */,
+				D2A3D46629E28D6E0093E475 /* HomeCell.swift in Sources */,
 				D2A3D43D29E27B340093E475 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
