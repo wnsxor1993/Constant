@@ -23,7 +23,7 @@ final class ImageCacheService {
         
         cache.setObject(image, forKey: key as NSString)
         #if DEBUG
-        print("Sampled Image saved in cache successly")
+        print("\(key): Sampled Image saved in cache successly")
         #endif
     }
     
@@ -37,7 +37,7 @@ final class ImageCacheService {
         }
         
         #if DEBUG
-        print("Fetch Image from cache")
+        print("\(key):Fetch Image from cache")
         #endif
         
         return cachedImage
