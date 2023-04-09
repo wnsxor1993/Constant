@@ -23,7 +23,7 @@ class HomeViewController: UIViewController {
         $0.sizeToFit()
     }
     
-    private let listCollectionView: UICollectionView = .init(frame: .zero, collectionViewLayout: .init()).then {
+    private lazy var listCollectionView: UICollectionView = .init(frame: .zero, collectionViewLayout: .init()).then {
         guard let compositionalLayout: UICollectionViewCompositionalLayout = CollectionLayout().makeCompositionalLayout(which: .home) else { return }
 
         $0.collectionViewLayout = compositionalLayout
@@ -31,10 +31,13 @@ class HomeViewController: UIViewController {
         $0.backgroundColor = .clear
         $0.register(HomeCell.self, forCellWithReuseIdentifier: HomeCell.reuseIdentifier)
         $0.register(LoadingFooter.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: LoadingFooter.reuseIdentifier)
+        $0.delegate = self
     }
     
     private var dataSource: UICollectionViewDiffableDataSource<DiffableDataSection, PiscumDataSource>?
     private weak var coordinatorDelegate: HomeCoordinator?
+    
+    private var isUpdate: Bool = false
     
     var disposeBag: DisposeBag = .init()
     
@@ -72,6 +75,10 @@ extension HomeViewController: View {
             .asDriver(onErrorJustReturn: [])
             .drive(with: self) { (owner, lists) in
                 guard !(lists.isEmpty) else { return }
+                
+                if lists.count > 1 {
+                    owner.isUpdate = false
+                }
                 
                 owner.makeSnapShotAndApply(data: lists)
             }
@@ -126,6 +133,8 @@ private extension HomeViewController {
         self.dataSource?.supplementaryViewProvider = .some({ collectionView, elementKind, indexPath in
             guard let cell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: LoadingFooter.reuseIdentifier, for: indexPath) as? LoadingFooter else { return .init() }
             
+            cell.isHidden = !self.isUpdate
+            
             return cell
         })
     }
@@ -136,5 +145,30 @@ private extension HomeViewController {
         DispatchQueue.main.async {
             self.dataSource?.apply(snapshot, animatingDifferences: true)
         }
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate, UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scrollHeight: CGFloat = scrollView.frame.size.height
+        let scrollOffset: CGFloat = scrollView.contentOffset.y
+        
+        guard !isUpdate, (scrollHeight - scrollOffset) < 30 else { return }
+        
+        self.isUpdate = true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        guard let footer = view as? LoadingFooter else { return }
+        
+        footer.activityIndicator.startAnimating()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
+        guard let footer = view as? LoadingFooter else { return }
+        print("WillDisappear")
+        
+        footer.activityIndicator.stopAnimating()
     }
 }
