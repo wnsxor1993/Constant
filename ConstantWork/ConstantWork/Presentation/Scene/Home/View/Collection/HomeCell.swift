@@ -32,7 +32,7 @@ final class HomeCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        cellImageView.image = nil
+        cellImageView.image = .init(named: "defaultImage")
     }
     
     func configure(with data: Data) {

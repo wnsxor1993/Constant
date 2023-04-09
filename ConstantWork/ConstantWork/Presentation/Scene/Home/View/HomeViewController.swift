@@ -115,7 +115,7 @@ private extension HomeViewController {
                 return cell
             }
             
-            DispatchQueue.global().async {
+            DispatchQueue.global(qos: .background).async {
                 self?.reactor?.action.onNext(.fetchPageImage(piscumDataSource))
             }
             
@@ -129,7 +129,7 @@ private extension HomeViewController {
         let snapshot: NSDiffableDataSourceSnapshot<DiffableDataSection, PiscumDataSource> = SnapShotService.makeSnapShot(with: data, section: DiffableDataSection.home)
         
         DispatchQueue.main.async {
-            self.dataSource?.apply(snapshot, animatingDifferences: false)
+            self.dataSource?.apply(snapshot, animatingDifferences: true)
         }
     }
 }
