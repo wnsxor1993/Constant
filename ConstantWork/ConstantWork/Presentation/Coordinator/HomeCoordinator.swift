@@ -21,7 +21,11 @@ final class HomeCoordinator: Coordinator {
     }
     
     func start() {
+        let listManager: ListManager = .init()
+        let homeReactor: HomeReactor = .init(with: listManager)
         let homeVC: HomeViewController = .init(with: self)
+        homeVC.reactor = homeReactor
+        
         self.navigationController.navigationBar.isHidden = true
         self.childViewControllers.append(homeVC)
         

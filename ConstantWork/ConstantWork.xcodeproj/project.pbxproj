@@ -28,6 +28,9 @@
 		D2A3D47829E297EB0093E475 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D47729E297EB0093E475 /* EndPoint.swift */; };
 		D2A3D47A29E2990D0093E475 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D47929E2990D0093E475 /* NetworkService.swift */; };
 		D2A3D47C29E2995F0093E475 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D47B29E2995F0093E475 /* NetworkError.swift */; };
+		D2A3D47E29E29B270093E475 /* HomeReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D47D29E29B270093E475 /* HomeReactor.swift */; };
+		D2A3D48029E29CC40093E475 /* JSONConvertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D47F29E29CC40093E475 /* JSONConvertService.swift */; };
+		D2A3D48329E29D140093E475 /* ListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D48229E29D140093E475 /* ListManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 		D2A3D47729E297EB0093E475 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		D2A3D47929E2990D0093E475 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		D2A3D47B29E2995F0093E475 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		D2A3D47D29E29B270093E475 /* HomeReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeReactor.swift; sourceTree = "<group>"; };
+		D2A3D47F29E29CC40093E475 /* JSONConvertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConvertService.swift; sourceTree = "<group>"; };
+		D2A3D48229E29D140093E475 /* ListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListManager.swift; sourceTree = "<group>"; };
 		FCCEFA39C3A34B43C99D2EEE /* Pods-ConstantWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConstantWork.debug.xcconfig"; path = "Target Support Files/Pods-ConstantWork/Pods-ConstantWork.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +172,7 @@
 		D2A3D45829E2808D0093E475 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				D2A3D48129E29D080093E475 /* Manager */,
 				D2A3D46729E28F190093E475 /* Service */,
 			);
 			path = Domain;
@@ -202,6 +209,7 @@
 		D2A3D45C29E284F70093E475 /* Reactor */ = {
 			isa = PBXGroup;
 			children = (
+				D2A3D47D29E29B270093E475 /* HomeReactor.swift */,
 			);
 			path = Reactor;
 			sourceTree = "<group>";
@@ -228,6 +236,8 @@
 			isa = PBXGroup;
 			children = (
 				D2A3D46829E28F210093E475 /* SnapShotService.swift */,
+				D2A3D47929E2990D0093E475 /* NetworkService.swift */,
+				D2A3D47F29E29CC40093E475 /* JSONConvertService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -243,7 +253,6 @@
 		D2A3D47129E297930093E475 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				D2A3D47929E2990D0093E475 /* NetworkService.swift */,
 				D2A3D47B29E2995F0093E475 /* NetworkError.swift */,
 				D2A3D47229E2979C0093E475 /* EndPoint */,
 			);
@@ -258,6 +267,14 @@
 				D2A3D47729E297EB0093E475 /* EndPoint.swift */,
 			);
 			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		D2A3D48129E29D080093E475 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D2A3D48229E29D140093E475 /* ListManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		D33864C239C919AF2D1B3112 /* Pods */ = {
@@ -393,6 +410,9 @@
 				D2A3D46129E288070093E475 /* UIView +.swift in Sources */,
 				D2A3D43F29E27B340093E475 /* HomeViewController.swift in Sources */,
 				D2A3D47629E297C00093E475 /* HTTPMethod.swift in Sources */,
+				D2A3D48329E29D140093E475 /* ListManager.swift in Sources */,
+				D2A3D47E29E29B270093E475 /* HomeReactor.swift in Sources */,
+				D2A3D48029E29CC40093E475 /* JSONConvertService.swift in Sources */,
 				D2A3D46C29E28FA70093E475 /* PiscumDTO.swift in Sources */,
 				D2A3D47829E297EB0093E475 /* EndPoint.swift in Sources */,
 				D2A3D47029E2930C0093E475 /* HomeCoordinator.swift in Sources */,

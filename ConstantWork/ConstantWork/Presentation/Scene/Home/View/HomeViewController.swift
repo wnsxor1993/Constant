@@ -10,6 +10,7 @@ import Then
 import SnapKit
 import RxSwift
 import RxCocoa
+import ReactorKit
 
 class HomeViewController: UIViewController {
 
@@ -34,6 +35,8 @@ class HomeViewController: UIViewController {
     private var dataSource: UICollectionViewDiffableDataSource<DiffableDataSection, PiscumDTO>?
     private weak var coordinatorDelegate: HomeCoordinator?
     
+    var disposeBag: DisposeBag = .init()
+    
     init(with coordinatorDelegate: HomeCoordinator) {
         self.coordinatorDelegate = coordinatorDelegate
         
@@ -51,7 +54,27 @@ class HomeViewController: UIViewController {
         self.view.backgroundColor = .white
         self.configureLayouts()
         self.configureDataSource()
-        self.dummyData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.reactor?.action.onNext(.fetchPageList)
+    }
+}
+
+extension HomeViewController: View {
+    
+    func bind(reactor: HomeReactor) {
+        reactor.state.map(\.pageLists)
+            .distinctUntilChanged()
+            .asDriver(onErrorJustReturn: [])
+            .drive(with: self) { (owner, lists) in
+                guard !(lists.isEmpty) else { return }
+                
+                owner.makeSnapShotAndApply(data: lists)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -101,11 +124,5 @@ private extension HomeViewController {
         DispatchQueue.main.async {
             self.dataSource?.apply(snapshot, animatingDifferences: false)
         }
-    }
-    
-    func dummyData() {
-        let dtoArray: [PiscumDTO] = [.init(id: "ABC", author: "None", width: 300, height: 300, url: "none", downloadURL: "none"), .init(id: "ABCd", author: "None", width: 300, height: 300, url: "none", downloadURL: "none"), .init(id: "ABCe", author: "None", width: 300, height: 300, url: "none", downloadURL: "none"), .init(id: "ABCf", author: "None", width: 300, height: 300, url: "none", downloadURL: "none"), .init(id: "ABCg", author: "None", width: 300, height: 300, url: "none", downloadURL: "none")]
-        
-        self.makeSnapShotAndApply(data: dtoArray)
     }
 }
