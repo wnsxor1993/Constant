@@ -32,7 +32,7 @@ final class ListManager {
                     }
                     
                     self.currentLists = lists
-                    self.currentPage += 50
+                    self.currentPage += 1
                     observer(.success(self.currentLists))
                     
                     return Disposables.create()
