@@ -36,9 +36,13 @@ final class ListManager {
                 }
             }
             .flatMap { lists -> Single<[Data]> in
+                guard !(lists.isEmpty) else { return .just([]) }
+                
                 return self.encodeImageWithCache(from: lists)
             }
             .flatMap {
+                guard !($0.isEmpty) else { return .just([]) }
+                
                 return self.convertDTOToDataSource(with: $0)
             }
     }
