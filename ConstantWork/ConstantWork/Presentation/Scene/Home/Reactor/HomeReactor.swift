@@ -36,6 +36,10 @@ final class HomeReactor: Reactor {
         self.initialState = State()
     }
     
+    func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
+        return Observable.merge(mutation, listManager.imageDataSourceRelay.map(Mutation.refreshImage))
+    }
+    
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
         case .fetchPageList:
@@ -50,11 +54,9 @@ final class HomeReactor: Reactor {
                 .asObservable()
             
         case .fetchPageImage(let dataSource):
-            return self.listManager.fetchPageImageData(from: dataSource)
-                .flatMap {
-                    return .just(.refreshImage($0))
-                }
-                .asObservable()
+            self.listManager.fetchPageImageData(from: dataSource)
+            
+            return .empty()
             
         case .resetAlertMessage:
             return .just(.alertEndPage(nil))

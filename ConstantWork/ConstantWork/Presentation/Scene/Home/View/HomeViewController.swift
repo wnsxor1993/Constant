@@ -142,22 +142,13 @@ private extension HomeViewController {
     func makeSnapShotAndApply(data: [PiscumDataSource]) {
         let snapshot: NSDiffableDataSourceSnapshot<DiffableDataSection, PiscumDataSource> = SnapShotService.makeSnapShot(with: data, section: DiffableDataSection.home)
         
-        DispatchQueue.main.async {
+        DispatchQueue.global(qos: .background).async {
             self.dataSource?.apply(snapshot, animatingDifferences: true)
         }
     }
 }
 
 extension HomeViewController: UICollectionViewDelegate, UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let scrollHeight: CGFloat = scrollView.frame.size.height
-        let scrollOffset: CGFloat = scrollView.contentOffset.y
-        
-        guard !isUpdate, (scrollHeight - scrollOffset) < 30 else { return }
-        
-        self.isUpdate = true
-    }
     
     func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
         guard let footer = view as? LoadingFooter else { return }

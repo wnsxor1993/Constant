@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import RxRelay
 
 final class ListManager {
     
@@ -16,6 +17,8 @@ final class ListManager {
     
     private var currentLists: PageLists = []
     private var currentPage: Int = 1
+    
+    let imageDataSourceRelay: PublishRelay<PiscumDataSource> = .init()
     
     func fetchPageList() -> Single<[PiscumDataSource]> {
         
@@ -40,9 +43,8 @@ final class ListManager {
             }
     }
     
-    func fetchPageImageData(from dataSource: PiscumDataSource) -> Single<PiscumDataSource> {
-        
-        return self.fetchImage(with: dataSource)
+    func fetchPageImageData(from dataSource: PiscumDataSource) {
+        self.fetchImage(with: dataSource)
     }
 }
 
@@ -68,33 +70,25 @@ private extension ListManager {
         }
     }
     
-    func fetchImage(with dataSource: PiscumDataSource) -> Single<PiscumDataSource> {
-        
-        return .create { observer in
+    func fetchImage(with dataSource: PiscumDataSource) {
+        DispatchQueue.global(qos: .background).async {
             var newDataSource: PiscumDataSource = dataSource
             
             if let image: UIImage = ImageCacheService.loadImageFromCache(with: "PiscumID_\(dataSource.id)") {
                 
                 newDataSource.imageData = image.jpegData(compressionQuality: 1)
-                observer(.success(newDataSource))
                 
-                return Disposables.create()
+                self.imageDataSourceRelay.accept(newDataSource)
             }
             
             let width: CGFloat = .init(newDataSource.width)
             let height: CGFloat = .init(newDataSource.height)
             
-            guard let image: UIImage = ImageCacheService.samplingImage(at: newDataSource.imageURL, to: .init(width: width, height: height), with: 0.1) else {
-                observer(.failure(RxError.noElements))
-                
-                return Disposables.create()
-            }
+            guard let image: UIImage = ImageCacheService.samplingImage(at: newDataSource.imageURL, to: .init(width: width, height: height), with: 0.1) else { return }
             
             ImageCacheService.saveImageToCache(with: "PiscumID_\(newDataSource.id)", image: image)
             newDataSource.imageData = image.jpegData(compressionQuality: 1)
-            observer(.success(newDataSource))
-            
-            return Disposables.create()
+            self.imageDataSourceRelay.accept(newDataSource)
         }
     }
 }
