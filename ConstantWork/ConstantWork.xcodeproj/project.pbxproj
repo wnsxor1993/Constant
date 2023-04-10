@@ -10,6 +10,7 @@
 		819AAC9591CB79BCF9B13C97 /* Pods_ConstantWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D79FC7551D6BD624485422 /* Pods_ConstantWork.framework */; };
 		D228721729E45220003546B2 /* PiscumInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = D228721629E45220003546B2 /* PiscumInfo.plist */; };
 		D228721929E45270003546B2 /* Bundle +.swift in Sources */ = {isa = PBXBuildFile; fileRef = D228721829E45270003546B2 /* Bundle +.swift */; };
+		D26B73E529E456A00004E8FD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26B73E429E456A00004E8FD /* DetailViewController.swift */; };
 		D2873CCC29E435A600672E01 /* LaunchReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2873CCB29E435A600672E01 /* LaunchReactor.swift */; };
 		D2A3D43B29E27B340093E475 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D43A29E27B340093E475 /* AppDelegate.swift */; };
 		D2A3D43D29E27B340093E475 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D43C29E27B340093E475 /* SceneDelegate.swift */; };
@@ -46,6 +47,7 @@
 		58D79FC7551D6BD624485422 /* Pods_ConstantWork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConstantWork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D228721629E45220003546B2 /* PiscumInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PiscumInfo.plist; sourceTree = "<group>"; };
 		D228721829E45270003546B2 /* Bundle +.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle +.swift"; sourceTree = "<group>"; };
+		D26B73E429E456A00004E8FD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		D2873CCB29E435A600672E01 /* LaunchReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchReactor.swift; sourceTree = "<group>"; };
 		D2A3D43729E27B340093E475 /* ConstantWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConstantWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A3D43A29E27B340093E475 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +100,14 @@
 				58D79FC7551D6BD624485422 /* Pods_ConstantWork.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D26B73E229E456840004E8FD /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				D26B73E429E456A00004E8FD /* DetailViewController.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		D2873CC929E4356D00672E01 /* View */ = {
@@ -200,6 +210,7 @@
 			children = (
 				D2A3D48D29E315C60093E475 /* Launch */,
 				D2A3D45A29E284E10093E475 /* Home */,
+				D26B73E229E456840004E8FD /* Detail */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -474,6 +485,7 @@
 				D228721929E45270003546B2 /* Bundle +.swift in Sources */,
 				D2A3D47A29E2990D0093E475 /* NetworkService.swift in Sources */,
 				D2A3D45E29E285060093E475 /* HomeTitleView.swift in Sources */,
+				D26B73E529E456A00004E8FD /* DetailViewController.swift in Sources */,
 				D2873CCC29E435A600672E01 /* LaunchReactor.swift in Sources */,
 				D2A3D46129E288070093E475 /* UIView +.swift in Sources */,
 				D2A3D43F29E27B340093E475 /* HomeViewController.swift in Sources */,
@@ -635,6 +647,7 @@
 				DEVELOPMENT_TEAM = Q646ABLXY6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ConstantWork/Application/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지 다운로드를 위해 허용이 필요합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -664,6 +677,7 @@
 				DEVELOPMENT_TEAM = Q646ABLXY6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ConstantWork/Application/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "이미지 다운로드를 위해 허용이 필요합니다";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

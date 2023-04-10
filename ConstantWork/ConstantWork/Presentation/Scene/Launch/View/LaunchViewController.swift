@@ -24,7 +24,7 @@ final class LaunchViewController: UIViewController {
         $0.contentMode = .scaleAspectFit
     }
     
-    private var coordinatorDelegate: LaunchCoordinateDelegate
+    private weak var coordinatorDelegate: LaunchCoordinateDelegate?
     
     var disposeBag: DisposeBag = .init()
     
@@ -62,7 +62,7 @@ extension LaunchViewController: View {
             .drive(with: self) { (owner, dataSource) in
                 guard dataSource.count == 20 else { return }
                 
-                owner.coordinatorDelegate.moveToHome(with: dataSource)
+                owner.coordinatorDelegate?.moveToHome(with: dataSource)
             }
             .disposed(by: disposeBag)
     }

@@ -10,6 +10,8 @@ import UIKit
 protocol HomeCoordinateDelegate: AnyObject {
     
     func presentAlertVC(with message: String, completion: @escaping () -> ())
+    func push(with imageData: Data)
+    func pop(which viewController: UIViewController)
 }
 
 final class HomeCoordinator: Coordinator {
@@ -34,6 +36,7 @@ final class HomeCoordinator: Coordinator {
         homeVC.reactor = homeReactor
         
         self.navigationController.navigationBar.isHidden = true
+        self.navigationController.interactivePopGestureRecognizer?.isEnabled = false
         self.childViewControllers.append(homeVC)
         
         self.navigationController.setViewControllers([homeVC], animated: false)
@@ -53,5 +56,19 @@ extension HomeCoordinator: HomeCoordinateDelegate {
         
         self.childViewControllers.last?.present(alertVC, animated: true)
         self.childViewControllers.append(alertVC)
+    }
+    
+    func push(with imageData: Data) {
+        let detailVC: DetailViewController = .init(with: self, imageData: imageData)
+        self.childViewControllers.append(detailVC)
+        
+        self.navigationController.pushViewController(detailVC, animated: true)
+    }
+    
+    func pop(which viewController: UIViewController) {
+        guard let index: Int = childViewControllers.firstIndex(of: viewController) else { return }
+        
+        self.navigationController.popViewController(animated: true)
+        self.childViewControllers.remove(at: index)
     }
 }

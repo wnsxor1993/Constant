@@ -188,4 +188,10 @@ extension HomeViewController: UICollectionViewDelegate, UIScrollViewDelegate {
         
         footer.activityIndicator.stopAnimating()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let item: PiscumDataSource = self.dataSource?.itemIdentifier(for: indexPath), let imageData: Data = item.imageData else { return }
+        
+        self.coordinatorDelegate?.push(with: imageData)
+    }
 }
