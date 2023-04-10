@@ -9,7 +9,7 @@ import UIKit
 
 protocol LaunchCoordinateDelegate: AnyObject {
     
-    func moveToHome()
+    func moveToHome(with defaultData: [PiscumDataSource])
 }
 
 final class LaunchCoordinator: Coordinator {
@@ -26,7 +26,10 @@ final class LaunchCoordinator: Coordinator {
     }
     
     func start() {
+        let listManager: ListManager = .init(with: 1)
+        let launchReactor: LaunchReactor = .init(with: listManager)
         let launchVC: LaunchViewController = .init(with: self)
+        launchVC.reactor = launchReactor
         
         self.navigationController.navigationBar.isHidden = true
         self.childViewControllers.append(launchVC)
@@ -37,9 +40,9 @@ final class LaunchCoordinator: Coordinator {
 
 extension LaunchCoordinator: LaunchCoordinateDelegate {
     
-    func moveToHome() {
+    func moveToHome(with defaultData: [PiscumDataSource]) {
         guard let sceneCoorDelegate = parentCoordinator as? SceneCoordinateDelegate else { return }
         
-        sceneCoorDelegate.moveToHome(from: self)
+        sceneCoorDelegate.moveToHome(from: self, with: defaultData)
     }
 }

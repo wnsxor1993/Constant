@@ -16,9 +16,13 @@ final class ListManager {
     private let networkService: NetworkService = .init()
     
     private var currentLists: PageLists = []
-    private var currentPage: Int = 1
+    private var currentPage: Int
     
     let imageDataSourceRelay: PublishRelay<PiscumDataSource> = .init()
+    
+    init(with currentPage: Int) {
+        self.currentPage = currentPage
+    }
     
     func fetchPageList() -> Single<[PiscumDataSource]> {
         
