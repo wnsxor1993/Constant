@@ -18,7 +18,7 @@ enum EndPoint: EndPointable {
     var host: String {
         switch self {
         case .fetchList:
-            return "picsum.photos"
+            return Bundle.main.apiHost
         }
 
     }
@@ -26,7 +26,7 @@ enum EndPoint: EndPointable {
     var path: String? {
         switch self {
         case .fetchList:
-            return "/v2/list"
+            return Bundle.main.apiPath
         }
     }
 
