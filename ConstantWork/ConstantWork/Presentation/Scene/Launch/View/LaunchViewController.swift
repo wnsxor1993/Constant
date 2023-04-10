@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import Then
+import SnapKit
+import RxSwift
+import RxCocoa
+import ReactorKit
 
 final class LaunchViewController: UIViewController {
     
@@ -20,6 +25,8 @@ final class LaunchViewController: UIViewController {
     }
     
     private var coordinatorDelegate: LaunchCoordinateDelegate
+    
+    var disposeBag: DisposeBag = .init()
     
     init(with coordinatorDelegate: LaunchCoordinateDelegate) {
         self.coordinatorDelegate = coordinatorDelegate
@@ -43,6 +50,21 @@ final class LaunchViewController: UIViewController {
         super.viewDidAppear(animated)
         
         self.updateLayouts()
+        self.reactor?.action.onNext(.fetchDefaultList)
+    }
+}
+
+extension LaunchViewController: View {
+    
+    func bind(reactor: LaunchReactor) {
+        reactor.state.map(\.piscumDataSource)
+            .asDriver { _ in return .never() }
+            .drive(with: self) { (owner, dataSource) in
+                guard dataSource.count == 20 else { return }
+                
+                owner.coordinatorDelegate.moveToHome(with: dataSource)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -78,10 +100,6 @@ private extension LaunchViewController {
             
             self.view.setNeedsLayout()
             self.view.layoutIfNeeded()
-        }) { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self.coordinatorDelegate.moveToHome()
-            }
-        }
+        })
     }
 }

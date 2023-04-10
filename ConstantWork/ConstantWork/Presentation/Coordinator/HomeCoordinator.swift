@@ -19,15 +19,17 @@ final class HomeCoordinator: Coordinator {
     var navigationController: UINavigationController
     
     private var childViewControllers: [UIViewController] = []
+    private let defaultData: [PiscumDataSource]
     
-    init(_ navigation: UINavigationController, with parent: Coordinator) {
+    init(_ navigation: UINavigationController, with parent: Coordinator, by defaultData: [PiscumDataSource]) {
         self.navigationController = navigation
         self.parentCoordinator = parent
+        self.defaultData = defaultData
     }
     
     func start() {
-        let listManager: ListManager = .init()
-        let homeReactor: HomeReactor = .init(with: listManager)
+        let listManager: ListManager = .init(with: 2)
+        let homeReactor: HomeReactor = .init(with: listManager, from: defaultData)
         let homeVC: HomeViewController = .init(with: self)
         homeVC.reactor = homeReactor
         

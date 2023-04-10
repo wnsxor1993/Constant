@@ -9,7 +9,7 @@ import UIKit
 
 protocol SceneCoordinateDelegate: AnyObject {
     
-    func moveToHome(from coor: Coordinator)
+    func moveToHome(from coor: Coordinator, with defaultData: [PiscumDataSource])
 }
 
 final class SceneCoordinator: Coordinator {
@@ -32,8 +32,8 @@ final class SceneCoordinator: Coordinator {
 
 extension SceneCoordinator: SceneCoordinateDelegate {
     
-    func moveToHome(from coor: Coordinator) {
-        let homeCoor: HomeCoordinator = .init(navigationController, with: self)
+    func moveToHome(from coor: Coordinator, with defaultData: [PiscumDataSource]) {
+        let homeCoor: HomeCoordinator = .init(navigationController, with: self, by: defaultData)
         homeCoor.start()
         
         self.childCoordinators.append(homeCoor)

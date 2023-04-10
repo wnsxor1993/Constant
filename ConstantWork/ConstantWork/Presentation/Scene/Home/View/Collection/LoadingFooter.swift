@@ -14,7 +14,8 @@ final class LoadingFooter: UICollectionReusableView {
     static let reuseIdentifier = "LoadingFooter"
 
     private(set) var activityIndicator: UIActivityIndicatorView = .init().then {
-        $0.style = .medium
+        $0.style = .large
+        $0.color = .black
         $0.stopAnimating()
     }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		819AAC9591CB79BCF9B13C97 /* Pods_ConstantWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D79FC7551D6BD624485422 /* Pods_ConstantWork.framework */; };
+		D2873CCC29E435A600672E01 /* LaunchReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2873CCB29E435A600672E01 /* LaunchReactor.swift */; };
 		D2A3D43B29E27B340093E475 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D43A29E27B340093E475 /* AppDelegate.swift */; };
 		D2A3D43D29E27B340093E475 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D43C29E27B340093E475 /* SceneDelegate.swift */; };
 		D2A3D43F29E27B340093E475 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A3D43E29E27B340093E475 /* HomeViewController.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		139C23925A8285822C2E0B81 /* Pods-ConstantWork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ConstantWork.release.xcconfig"; path = "Target Support Files/Pods-ConstantWork/Pods-ConstantWork.release.xcconfig"; sourceTree = "<group>"; };
 		58D79FC7551D6BD624485422 /* Pods_ConstantWork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ConstantWork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2873CCB29E435A600672E01 /* LaunchReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchReactor.swift; sourceTree = "<group>"; };
 		D2A3D43729E27B340093E475 /* ConstantWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ConstantWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2A3D43A29E27B340093E475 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2A3D43C29E27B340093E475 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,22 @@
 				58D79FC7551D6BD624485422 /* Pods_ConstantWork.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D2873CC929E4356D00672E01 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D2A3D48E29E315DE0093E475 /* LaunchViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D2873CCA29E4359800672E01 /* Reactor */ = {
+			isa = PBXGroup;
+			children = (
+				D2873CCB29E435A600672E01 /* LaunchReactor.swift */,
+			);
+			path = Reactor;
 			sourceTree = "<group>";
 		};
 		D2A3D42E29E27B340093E475 = {
@@ -311,7 +329,8 @@
 		D2A3D48D29E315C60093E475 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
-				D2A3D48E29E315DE0093E475 /* LaunchViewController.swift */,
+				D2873CCA29E4359800672E01 /* Reactor */,
+				D2873CC929E4356D00672E01 /* View */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
@@ -447,6 +466,7 @@
 				D2A3D48A29E2A8770093E475 /* PiscumDataSource.swift in Sources */,
 				D2A3D47A29E2990D0093E475 /* NetworkService.swift in Sources */,
 				D2A3D45E29E285060093E475 /* HomeTitleView.swift in Sources */,
+				D2873CCC29E435A600672E01 /* LaunchReactor.swift in Sources */,
 				D2A3D46129E288070093E475 /* UIView +.swift in Sources */,
 				D2A3D43F29E27B340093E475 /* HomeViewController.swift in Sources */,
 				D2A3D47629E297C00093E475 /* HTTPMethod.swift in Sources */,

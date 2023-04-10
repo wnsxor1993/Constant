@@ -64,7 +64,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.reactor?.action.onNext(.fetchPageList)
+        self.reactor?.action.onNext(.viewWillAppear)
     }
 }
 
@@ -72,7 +72,7 @@ extension HomeViewController: View {
     
     func bind(reactor: HomeReactor) {
         reactor.state.map(\.pageLists)
-            .distinctUntilChanged()
+            .skip(1)
             .asDriver(onErrorJustReturn: [])
             .drive(with: self) { (owner, lists) in
                 guard !(lists.isEmpty) else { return }
@@ -80,7 +80,10 @@ extension HomeViewController: View {
                 let filtered = lists.filter { $0.imageData != nil }
                 
                 if filtered.count == lists.count {
-                    owner.canUpdate = true
+                    // 너무 빠른 추가 서치를 방지
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        owner.canUpdate = true
+                    }
                 }
                 
                 owner.makeSnapShotAndApply(data: lists)
