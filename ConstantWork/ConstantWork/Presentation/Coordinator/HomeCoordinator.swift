@@ -29,7 +29,7 @@ final class HomeCoordinator: Coordinator {
     
     func start() {
         let listManager: ListManager = .init(with: 2)
-        let homeReactor: HomeReactor = .init(with: listManager)
+        let homeReactor: HomeReactor = .init(with: listManager, from: defaultData)
         let homeVC: HomeViewController = .init(with: self)
         homeVC.reactor = homeReactor
         

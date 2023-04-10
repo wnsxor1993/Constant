@@ -11,19 +11,21 @@ import ReactorKit
 final class HomeReactor: Reactor {
     
     enum Action {
+        case viewWillAppear
         case fetchPageList
         case fetchPageImage(PiscumDataSource)
         case resetAlertMessage
     }
     
     enum Mutation {
+        case setPages([PiscumDataSource])
         case refreshPages([PiscumDataSource])
         case refreshImage(PiscumDataSource)
         case alertEndPage(String?)
     }
     
     struct State {
-        var pageLists: [PiscumDataSource] = []
+        var pageLists: [PiscumDataSource]
         var alertMessage: String?
     }
     
@@ -31,9 +33,9 @@ final class HomeReactor: Reactor {
     
     private let listManager: ListManager
     
-    init(with listManager: ListManager) {
+    init(with listManager: ListManager, from defaultData: [PiscumDataSource]) {
         self.listManager = listManager
-        self.initialState = State()
+        self.initialState = State(pageLists: defaultData)
     }
     
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
@@ -42,6 +44,9 @@ final class HomeReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
+        case .viewWillAppear:
+            return .just(.setPages(initialState.pageLists))
+            
         case .fetchPageList:
             return self.listManager.fetchPageList()
                 .flatMap {
@@ -67,8 +72,11 @@ final class HomeReactor: Reactor {
         var newState = state
         
         switch mutation {
+        case let .setPages(pages):
+            newState.pageLists = pages
+            
         case let .refreshPages(pages):
-            newState.pageLists.append(contentsOf: pages)
+            newState.pageLists = self.appendWithoutOverlap(from: newState.pageLists, with: pages)
             
         case let .refreshImage(page):
             let index: Int? = newState.pageLists.firstIndex { dataSource in
@@ -84,5 +92,23 @@ final class HomeReactor: Reactor {
         }
         
         return newState
+    }
+}
+
+private extension HomeReactor {
+    
+    func appendWithoutOverlap(from origin: [PiscumDataSource], with new: [PiscumDataSource]) -> [PiscumDataSource] {
+        let originSet: Set<PiscumDataSource> = .init(origin)
+        let newSet: Set<PiscumDataSource> = .init(new)
+        
+        let mergedSet = originSet.union(newSet)
+        let mergedArray: [PiscumDataSource] = .init(mergedSet)
+            .sorted { firstData, secondData in
+                guard let first = Int(firstData.id), let second = Int(secondData.id) else { return false }
+                
+                return first < second
+            }
+        
+        return mergedArray
     }
 }

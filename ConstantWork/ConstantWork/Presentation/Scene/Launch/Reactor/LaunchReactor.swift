@@ -33,7 +33,7 @@ final class LaunchReactor: Reactor {
     }
     
     func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
-        return listManager.imageDataSourceRelay.map(Mutation.refreshImage)
+        return Observable.merge(mutation, listManager.imageDataSourceRelay.map(Mutation.refreshImage))
     }
     
     func mutate(action: Action) -> Observable<Mutation> {
@@ -52,7 +52,8 @@ final class LaunchReactor: Reactor {
         case .refreshImage(let piscumDataSource):
             newState.piscumDataSource.append(piscumDataSource)
             newState.piscumDataSource.sort { firstPiscum, secondPiscum in
-                return firstPiscum.id < secondPiscum.id
+                guard let first = Int(firstPiscum.id), let second = Int(secondPiscum.id) else { return false }
+                return first < second
             }
         }
         
