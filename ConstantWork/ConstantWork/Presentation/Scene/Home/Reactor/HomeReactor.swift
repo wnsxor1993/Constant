@@ -11,7 +11,7 @@ import ReactorKit
 final class HomeReactor: Reactor {
     
     enum Action {
-        case viewWillAppear
+        case viewDidLoad
         case fetchPageList
         case fetchPageImage(PiscumDataSource)
         case resetAlertMessage
@@ -44,7 +44,7 @@ final class HomeReactor: Reactor {
     
     func mutate(action: Action) -> Observable<Mutation> {
         switch action {
-        case .viewWillAppear:
+        case .viewDidLoad:
             return .just(.setPages(initialState.pageLists))
             
         case .fetchPageList:

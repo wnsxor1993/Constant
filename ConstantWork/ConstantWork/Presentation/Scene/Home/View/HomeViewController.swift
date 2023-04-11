@@ -59,12 +59,8 @@ class HomeViewController: UIViewController {
         self.view.backgroundColor = .white
         self.configureLayouts()
         self.configureDataSource()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
-        self.reactor?.action.onNext(.viewWillAppear)
+        self.reactor?.action.onNext(.viewDidLoad)
     }
 }
 
