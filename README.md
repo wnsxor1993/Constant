@@ -31,7 +31,7 @@
 ## 📝 화면 개요
 |   스크롤링    |   마지막 스크롤   |   상세 화면   |
 | :----------: | :--------: | :--------: |
-|  <img src="https://i.imgur.com/Idvo4HG.gif" width="250"> | <img src="https://i.imgur.com/xK0WVqk.gif" width="250"> | <img src="https://i.imgur.com/YcgTyOk.gif" width="250"> |
+|  <img src="https://user-images.githubusercontent.com/44107696/231154167-a22a9502-fe49-44df-9d19-310a514ef7ad.gif" width="250"> | <img src="https://user-images.githubusercontent.com/44107696/231154176-8a0c9c9d-7051-4a9d-9bfd-1021f6a82891.gif" width="250"> | <img src="https://user-images.githubusercontent.com/44107696/231154182-d5b0f502-3dc2-49b4-bf7b-dfab4c98d834.gif" width="250"> |
 |   스크롤을 통한 이미지 출력    |   마지막 페이지 스크롤    |   상세 화면 및 다운로드   |
 
 ## ⚙️ 개발 환경
